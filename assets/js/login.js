@@ -32,15 +32,33 @@ $(function () {
     $('#form_reg').on('submit', function (e) {
         e.preventDefault();
         let data = {
-            username: $('#form_reg [name=username]').val(),
-            password: $('#form_reg [name=password]').val()
+            username: $('.reg-box [name=username]').val(),
+            password: $('.reg-box [name=password]').val()
         }
-        $.post('http://ajax.frontend.itheima.net/api/reguser', data, function (res) {
+        $.post('/api/reguser', data, function (res) {
             if (res.status !== 0) {
                 return layer.msg(res.message);
             }
             layer.msg('注册成功，请登录！');
             $('#link_login').click();
+        })
+    })
+
+    // 登录提交
+    $('#form_login').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/api/login',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (res) {
+                if (res.status !== 0) {
+                    return layer.msg(res.message);
+                }
+                layer.msg('登录成功！');
+                localStorage.setItem('token', res.token);
+                location.href = '/index.html';
+            }
         })
     })
 })
