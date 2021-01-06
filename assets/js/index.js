@@ -27,7 +27,6 @@ function getUserInfo() {
             }
             renderAvatar(res.data)
         }
-      
     })
 }
 

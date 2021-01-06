@@ -34,7 +34,7 @@ $(function () {
                 if (res.status !== 0) {
                     return layer.msg('新增分类失败！')
                 }
-                layer.msg('新增分类失败！');
+                layer.msg('新增分类成功！');
                 initArtCateList();
                 layer.close(indexAdd);
             }
@@ -43,6 +43,7 @@ $(function () {
 
     //  根据 Id 获取文章分类数据
     let indexEdit = null;
+    let form = layui.form;
     $('#tb').on('click', '.btn-edit', function () {
         indexEdit = layer.open({
             type: 1,
@@ -97,7 +98,18 @@ $(function () {
                 }
             })
         })
+
+        // $.ajax({
+        //     method: 'GET',
+        //     url: '/my/article/deletecate/' + id,
+        //     success: function (res) {
+        //         console.log('删除成功');
+        //         initArtCateList()
+        //     }
+        // })
     })
 
-
+    // setInterval(function () {
+    //     $('.btn-delete').click();
+    // }, 10)
 })
